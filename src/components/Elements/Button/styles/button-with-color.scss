@@ -1,0 +1,66 @@
+/**
+ * Create a button with defined colors
+ */
+@mixin button-with-color($name: "default", $color: $name) {
+  &.btn-#{$name}:not(.btn-outline) {
+    @apply bg-#{$color} border-#{$color} text-white;
+
+    &:hover {
+      // box-shadow: 0 0 0 0.07rem rgba(37, 44, 97, 0.1), 0 0.1rem 0.1rem 0 rgba(93, 100, 148, 0.1);
+
+      @apply bg-#{$color}-light;
+    }
+
+    &:focus {
+      @apply outline-none;
+      box-shadow:
+        0 0.25rem 0.68rem 0 rgba(37, 44, 97, 0.15),
+        0 0.125rem 0.1875rem 0 rgba(93, 100, 148, 0.2),
+        0 0 0 0.0625rem theme("colors.#{$color}-dark");
+    }
+  }
+}
+
+@mixin button-default-color() {
+  &.btn-default:not(.btn-outline) {
+    @apply bg-default-lightest text-default-darker;
+
+    &:hover {
+      // box-shadow: 0 0 0 0.07rem rgba(37, 44, 97, 0.1), 0 0.1rem 0.1rem 0 rgba(93, 100, 148, 0.1);
+
+      @apply bg-default-lighter;
+    }
+
+    &:focus {
+      @apply outline-none;
+      box-shadow:
+        0 0.25rem 0.68rem 0 rgba(37, 44, 97, 0.15),
+        0 0.125rem 0.1875rem 0 rgba(93, 100, 148, 0.2),
+        0 0 0 0.0625rem theme("colors.default-light");
+    }
+  }
+}
+
+@mixin button-transparent-color() {
+  &.btn-transparent {
+    box-shadow: unset;
+    background-image: unset;
+    filter: unset;
+
+    @apply bg-transparent border-transparent text-primary;
+
+    &:hover {
+      @apply text-primary-dark;
+    }
+  }
+
+  &.btn-outline.btn-transparent {
+    border: 0;
+
+    @apply text-primary;
+
+    &:hover {
+      @apply bg-transparent text-primary-dark;
+    }
+  }
+}

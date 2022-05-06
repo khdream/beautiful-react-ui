@@ -1,0 +1,92 @@
+@import "../../../theme/utils/mixins";
+
+@mixin make-textarea-color($color: 'default') {
+  &.textarea-#{$color} {
+    textarea {
+      @apply border-#{$color};
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem theme('colors.#{$color}-lightest');
+      }
+    }
+  }
+}
+
+.bi.bi-textarea {
+  @apply box-border inline-flex align-top relative flex-col font-normal font-sans text-base tracking-normal text-default-darker;
+
+  + .bi.bi-textarea {
+    @apply ml-2;
+  }
+
+  textarea {
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-align: start;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    transition: box-shadow ease-in-out 0.25s;
+    max-width: 100%;
+    @apply bg-white font-normal font-sans text-base tracking-normal text-default-darker border border-default-light;
+    @apply w-48 border-solid rounded px-3 py-2 m-0 outline-none appearance-none resize-none box-border;
+
+    // placeholder
+    @include create-placeholder();
+
+    // focus
+    &:focus {
+      @apply outline-none;
+      box-shadow: 0 0 0 0.2rem theme('colors.primary-lightest');
+    }
+  }
+
+  // ----------------------------
+  // RESIZABLE
+  // ----------------------------
+  &.resizable {
+    textarea {
+      @apply resize;
+    }
+  }
+
+  // ----------------------------
+  // FLUID
+  // ----------------------------
+  &.fluid {
+    @apply w-full;
+
+    textarea {
+      @apply w-full;
+    }
+  }
+
+  // ----------------------------
+  // DISABLED
+  // ----------------------------
+  &.disabled textarea[disabled] {
+    @apply bg-default-lighter cursor-not-allowed;
+  }
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include make-textarea-color('primary');
+  @include make-textarea-color('secondary');
+  @include make-textarea-color('info');
+  @include make-textarea-color('success');
+  @include make-textarea-color('warning');
+  @include make-textarea-color('danger');
+
+  // ----------------------------
+  // SIZES
+  // ----------------------------
+  &.textarea-sm textarea {
+    @apply pl-2 py-1 text-sm;
+  }
+
+  &.textarea-lg textarea {
+    @apply pl-4 py-2 leading-normal text-xl;
+  }
+}
+

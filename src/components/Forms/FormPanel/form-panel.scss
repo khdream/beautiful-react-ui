@@ -1,0 +1,26 @@
+@import "../../../theme/utils/mixins";
+
+.bi.bi-form-panel {
+  @apply relative border border-solid border-default-light bg-default-lighter rounded box-border;
+
+  + .bi.bi-form-panel {
+    @apply mt-4;
+  }
+
+  .bi-fp-label {
+    @apply inline-block px-4 absolute box-border;
+
+    @include default-paragraph-style();
+    transform: translateY(-50%);
+  }
+
+  .bi-fp-content {
+    @apply p-4;
+  }
+
+  &.bi-fp-label-title .bi-fp-label {
+    @apply relative py-2 bg-default-light w-full font-semibold;
+
+    transform: none;
+  }
+}

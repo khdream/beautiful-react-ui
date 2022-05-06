@@ -1,0 +1,8 @@
+#bi-floats {
+  @apply relative;
+  z-index: 9999; // floaters must appear upon everything else including modals
+
+  .bi-floater {
+    @apply absolute;
+  }
+}

@@ -1,0 +1,54 @@
+@import "../../../theme/utils/animations";
+
+.bi.bi-sidebar .bi-sidebar-nav-item.sidebar-collapsible {
+  a {
+    @apply relative;
+  }
+
+  // ----------------------------
+  // COLLAPSIBLE
+  // ----------------------------
+  .sidebar-collapsible-content {
+    @apply h-0 overflow-hidden;
+    transition: height 0.35s ease-in-out;
+    background: rgba(20, 20, 20, 0.05);
+    box-shadow: 0 0 0.15rem 0.15rem rgba(20, 20, 20, 0.05) inset;
+
+    .bi.bi-caret {
+      transition: transform 0.25s ease-in-out;
+    }
+  }
+
+  // ----------------------------
+  // OPEN
+  // ----------------------------
+  &.sidebar-collapsible-open a .bi.bi-caret {
+    transform: rotate(180deg);
+  }
+
+  // ----------------------------
+  // HOVER
+  // ----------------------------
+  &:hover {
+    border-right-width: 0;
+    border-left-width: 0;
+  }
+}
+
+// ----------------------------
+// ORIENTATION RIGHT
+// ----------------------------
+.bi.bi-sidebar.sidebar-right {
+  .bi-sidebar-nav-item.sidebar-collapsible.sidebar-collapsible-open .sidebar-collapsible-content {
+    @apply pl-0;
+
+    li {
+      @apply pl-2;
+    }
+  }
+
+  &:not(.sidebar-open) .bi-sidebar-nav-item.sidebar-collapsible a .bi.bi-caret {
+    left: 0;
+    right: unset;
+  }
+}

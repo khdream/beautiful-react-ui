@@ -1,0 +1,21 @@
+.bi.bi-notification {
+  .notification-content {
+    @apply text-default-dark break-words flex-grow mr-2;
+
+    .bi-title {
+      @apply font-semibold text-left;
+    }
+  }
+
+  .notification-left-side {
+    @apply text-center;
+
+    .bi.bi-avatar {
+      @apply mr-4;
+    }
+
+    .bi.bi-icon {
+      @apply mr-4;
+    }
+  }
+}

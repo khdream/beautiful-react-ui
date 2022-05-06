@@ -1,0 +1,92 @@
+@import "../../../theme/utils/mixins";
+
+$shrinkableOffsetLeft: calc(-1 * calc(theme('spacing.64') - theme('spacing.20')));
+$shrinkableOffsetRight: calc(calc(theme('spacing.64') - theme('spacing.20')));
+
+.bi.bi-sidebar {
+  box-shadow: 0 0 0.25rem 0.16rem rgba(20, 20, 20, 0.05), 0 0 0.5rem 0.4rem rgba(20, 20, 20, 0.1);
+  z-index: 4;
+  @apply flex flex-col box-border bg-white w-64 h-full overflow-hidden;
+
+  // ----------------------------
+  // TRANSITION TYPE
+  // ----------------------------
+  &.sidebar-translate {
+    transform: translateX($shrinkableOffsetLeft);
+    transition: transform 0.35s;
+  }
+
+  &.sidebar-margin {
+    &.sidebar-left {
+      margin-left: $shrinkableOffsetLeft;
+      transition: margin-left 0.35s;
+    }
+
+    &.sidebar-right {
+      margin-right: $shrinkableOffsetLeft;
+      transition: margin-right 0.35s;
+    }
+  }
+
+  // ----------------------------
+  // TYPES
+  // ----------------------------
+  &.sidebar-offcanvas.sidebar-translate {
+    transform: translateX(-100%);
+  }
+
+  &.sidebar-offcanvas.sidebar-margin {
+    &.sidebar-left {
+      margin-left: -100%;
+    }
+
+    &.sidebar-right {
+      margin-right: -100%;
+    }
+  }
+
+  // ----------------------------
+  // NAVIGATION ITEM
+  // ----------------------------
+  .bi-sidebar-navigation {
+    @apply m-0 overflow-scroll h-full;
+
+    @include handle-scrolling-bar();
+
+    ul {
+      @apply m-0 p-0;
+    }
+  }
+
+  // ----------------------------
+  // ORIENTATION
+  // ----------------------------
+  &.sidebar-left {
+    @apply mr-auto;
+  }
+
+  &.sidebar-right {
+    @apply ml-auto;
+
+    &.sidebar-translate {
+      transform: translateX($shrinkableOffsetRight);
+    }
+  }
+
+  // ----------------------------
+  // SIDEBAR OPEN
+  // ----------------------------
+  &.sidebar-open.sidebar-translate {
+    transform: translateX(0);
+  }
+
+  &.sidebar-open.sidebar-margin {
+    &.sidebar-left {
+      margin-left: 0;
+    }
+
+    &.sidebar-right {
+      margin-right: 0;
+    }
+  }
+}

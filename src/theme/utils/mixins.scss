@@ -1,0 +1,308 @@
+// --------------------
+// Ripple effect
+// --------------------
+@mixin ripple($opacity: 0.2, $duration: 0.3s) {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+
+  &::after {
+    backface-visibility: hidden;
+    perspective: 1vh;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #000 10%, transparent 10%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform $duration, opacity 1s;
+  }
+
+  &:active::after {
+    transform: scale(0, 0);
+    opacity: $opacity;
+    transition: 0s;
+  }
+}
+
+// --------------------
+// Create placeholder
+// --------------------
+@mixin create-placeholder() {
+  // stylelint-disable
+  &::-webkit-input-placeholder {
+    @apply font-light opacity-50;
+  }
+
+  &::-moz-placeholder {
+    @apply font-light opacity-50;
+  }
+
+  &:-ms-input-placeholder {
+    @apply font-light opacity-50;
+  }
+
+  &:-moz-placeholder {
+    @apply font-light opacity-50;
+  }
+  // stylelint-enable
+}
+
+// ---------------------
+// Material style gradient
+// ---------------------
+@mixin shadow-gradient() {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.1) 100%);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#00000000', endColorstr='#0d000000', GradientType=0);
+}
+
+// ----------------------------
+// Create pointer arrow
+// ----------------------------
+@mixin make-arrow-pointer($arrowPlacement: 'top-center', $borderColor: theme("colors.default-light"), $arrowFill: white) {
+  // ----------------------------
+  // Arrow
+  // ----------------------------
+  &::before {
+    @apply absolute w-0 h-0;
+
+    content: "";
+    z-index: 999;
+  }
+
+  &::after {
+    @apply border h-0 absolute;
+
+    content: "";
+  }
+
+  @if ($arrowPlacement == 'top-center') {
+    &::before {
+      bottom: -0.4rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      border-top: 0.5rem solid $arrowFill;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-bottom: 0 solid transparent;
+    }
+
+    &::after {
+      bottom: -0.5rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      border-top: 0.5rem solid;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-bottom: 0 solid transparent;
+      border-top-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'top-left') {
+    &::before {
+      bottom: -0.4rem;
+      left: 10%;
+      transform: translate(-50%, 0);
+      border-top: 0.5rem solid $arrowFill;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-bottom: 0 solid transparent;
+    }
+
+    &::after {
+      bottom: -0.5rem;
+      left: 10%;
+      transform: translate(-50%, 0);
+      border-top: 0.5rem solid;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-bottom: 0 solid transparent;
+      border-top-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'top-right') {
+    &::before {
+      bottom: -0.4rem;
+      left: 90%;
+      transform: translate(-50%, 0);
+      border-top: 0.5rem solid $arrowFill;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-bottom: 0 solid transparent;
+    }
+
+    &::after {
+      bottom: -0.5rem;
+      left: 90%;
+      transform: translate(-50%, 0);
+      border-top: 0.5rem solid;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-bottom: 0 solid transparent;
+      border-top-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'bottom-center') {
+    &::before {
+      top: -0.4rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      border-bottom: 0.5rem solid $arrowFill;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-top: 0 solid transparent;
+    }
+
+    &::after {
+      top: -0.4rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      border-bottom: 0.5rem solid;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-top: 0 solid transparent;
+      border-bottom-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'bottom-left') {
+    &::before {
+      top: -0.4rem;
+      left: 10%;
+      transform: translate(-50%, 0);
+      border-bottom: 0.5rem solid $arrowFill;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-top: 0 solid transparent;
+    }
+
+    &::after {
+      top: -0.4rem;
+      left: 10%;
+      transform: translate(-50%, 0);
+      border-bottom: 0.5rem solid;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-top: 0 solid transparent;
+      border-bottom-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'bottom-right') {
+    &::before {
+      top: -0.4rem;
+      left: 90%;
+      transform: translate(-50%, 0);
+      border-bottom: 0.5rem solid $arrowFill;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-top: 0 solid transparent;
+    }
+
+    &::after {
+      top: -0.4rem;
+      left: 90%;
+      transform: translate(-50%, 0);
+      border-bottom: 0.5rem solid;
+      border-right: 0.5rem solid transparent;
+      border-left: 0.5rem solid transparent;
+      border-top: 0 solid transparent;
+      border-bottom-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'left-center') {
+    &::before {
+      left: 99%;
+      top: 50%;
+      transform: translate(0, -50%);
+      border-left: 0.5rem solid $arrowFill;
+      border-top: 0.5rem solid transparent;
+      border-bottom: 0.5rem solid transparent;
+      border-right: 0 solid transparent;
+    }
+
+    &::after {
+      top: 50%;
+      left: 100%;
+      transform: translate(0, -50%);
+      border-left: 0.5rem solid;
+      border-top: 0.5rem solid transparent;
+      border-bottom: 0.5rem solid transparent;
+      border-right: 0 solid transparent;
+      border-left-color: $borderColor;
+    }
+  }
+
+  @if ($arrowPlacement == 'right-center') {
+    &::before {
+      right: 99%;
+      top: 50%;
+      transform: translate(0, -50%);
+      border-right: 0.5rem solid $arrowFill;
+      border-top: 0.5rem solid transparent;
+      border-bottom: 0.5rem solid transparent;
+      border-left: 0 solid transparent;
+    }
+
+    &::after {
+      top: 50%;
+      right: 100%;
+      transform: translate(0, -50%);
+      border-right: 0.5rem solid;
+      border-top: 0.5rem solid transparent;
+      border-bottom: 0.5rem solid transparent;
+      border-left: 0 solid transparent;
+      border-right-color: $borderColor;
+    }
+  }
+}
+
+// ----------------------------
+// Handle scrolling bar
+// ----------------------------
+@mixin handle-scrolling-bar() {
+  /*
+    Firefox: https://developer.mozilla.org/en/docs/Web/CSS/overflow
+    overflow: -moz-scrollbars-none; (no longer works)
+    IE: https://msdn.microsoft.com/en-us/library/hh771902(v=vs.85).aspx
+  */
+  -ms-overflow-style: none;
+
+  /*
+    Chrome: https://css-tricks.com/custom-scrollbars-in-webkit
+  */
+  // stylelint-disable-next-line
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// ----------------------------
+// Text style
+// ----------------------------
+@mixin default-paragraph-style($applyFontSans: true) {
+  @apply leading-tight antialiased text-base font-normal tracking-normal text-default-darker;
+
+  @if ($applyFontSans) {
+    @apply font-sans;
+  }
+
+  strong {
+    @apply font-semibold;
+  }
+
+  i {
+    @apply italic;
+  }
+}

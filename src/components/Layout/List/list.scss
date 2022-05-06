@@ -1,0 +1,119 @@
+@import '../../../theme/utils/mixins';
+
+@mixin make-list-color($colorName) {
+  &.bi-list-#{$colorName} {
+    @apply text-#{$colorName};
+  }
+
+  .bi-list-item.bi-list-item-#{$colorName} {
+    @apply text-#{$colorName};
+
+    &.bi-list-item-checked {
+      border-left-color: theme('colors.#{$colorName}');
+    }
+  }
+}
+
+.bi.bi-list {
+  @apply leading-tight antialiased text-base font-normal tracking-normal font-sans text-default-darker text-left;
+  @apply m-0 p-0 list-none rounded overflow-hidden;
+
+  // ----------------------------
+  // Single item
+  // ----------------------------
+  .bi.bi-list-item {
+    @apply flex flex-wrap items-start py-3 px-2 border-0 border-b border-solid border-default-light outline-none;
+
+    // remove border bottom from the last child
+    &:last-child {
+      @apply border-b-0;
+    }
+
+    // checkable single item
+    &.bi-list-checkable {
+      @apply cursor-pointer border-l-0;
+
+      transition: background 0.35s ease-in-out, border-left-width 0.25s ease-out;
+
+      .bi.bi-item-checkbox {
+        margin-left: auto;
+      }
+
+      &:hover {
+        @apply bg-default-lightest;
+      }
+
+      &.bi-list-item-checked {
+        @apply bg-default-lighter border-l-4;
+
+        border-left-color: theme('colors.default');
+      }
+
+      @include ripple(0.075, 0.4s);
+    }
+
+    .bi-list-item-icon {
+      @apply mr-2;
+    }
+
+    .bi-list-item-content {
+      @apply w-full flex-1;
+    }
+
+    // Draggable
+    &.bi-list-item-draggable {
+      @apply cursor-move;
+
+      .bi-item-dragicon {
+        @apply text-default self-center;
+      }
+    }
+  }
+
+
+  // ----------------------------
+  // Bordered
+  // ----------------------------
+  &.bi-list-bordered {
+    @apply border border-solid border-default-light bg-white;
+  }
+
+  // ----------------------------
+  // Colors
+  // ----------------------------
+  @include make-list-color('primary');
+  @include make-list-color('secondary');
+  @include make-list-color('info');
+  @include make-list-color('success');
+  @include make-list-color('warning');
+  @include make-list-color('danger');
+
+  // ----------------------------
+  // Nested
+  // ----------------------------
+  .bi.bi-list {
+    @apply pl-6 w-full -my-3 -mx-2 mt-2;
+
+    &.bi-list-item {
+      @apply p-2;
+    }
+  }
+
+
+  // ----------------------------
+  // Condensed
+  // ----------------------------
+  &.bi-list-condensed {
+    .bi-list-item {
+      @apply py-2 px-0 text-sm;
+
+      &.bi-list-item-icon {
+        @apply mr-1;
+      }
+    }
+
+    .bi.bi-list {
+      @apply pl-3 w-full -my-2 mt-1;
+    }
+  }
+}

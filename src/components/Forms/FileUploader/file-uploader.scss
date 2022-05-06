@@ -1,0 +1,39 @@
+@import "../../../theme/utils/mixins";
+
+.bi.bi-file-uploader {
+  transition: box-shadow ease-in-out 0.25s;
+
+  @apply box-border p-6 border-dashed rounded border-primary border-2 cursor-pointer text-center shadow;
+
+  .bi.bi-title {
+    @apply mb-0 leading-tight antialiased tracking-normal text-default-darker;
+
+    + .bi.bi-p {
+      @apply mt-4;
+    }
+  }
+
+  .bi-drop-icon {
+    transition: transform ease-in 0.35s;
+
+    @apply rounded-full inline-flex mb-4 text-4xl text-default-darker;
+  }
+
+  &:hover,
+  &.file-dropping {
+    @apply shadow-lg;
+
+    .bi-drop-icon {
+      transform: translateY(-10%);
+    }
+  }
+
+  input[type="file"] {
+    display: none;
+    visibility: hidden;
+  }
+
+  .bi.bi-uploaded-files {
+    @apply mt-4;
+  }
+}

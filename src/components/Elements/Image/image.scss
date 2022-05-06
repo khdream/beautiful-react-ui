@@ -1,0 +1,19 @@
+.bi.bi-image {
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+
+  @apply rounded shadow box-border;
+
+  + .bi.bi-image {
+    @apply ml-4;
+  }
+
+  &.bi-img-thumb {
+    @apply border-2 border-solid border-white;
+  }
+
+  &.bi-img-rounded {
+    @apply rounded-full;
+  }
+}

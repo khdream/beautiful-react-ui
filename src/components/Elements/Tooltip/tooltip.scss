@@ -1,0 +1,40 @@
+@import "../../../theme/utils/mixins";
+
+.bi.bi-tooltip {
+  @apply bg-black text-white;
+}
+
+// ----------------------------
+// Arrow pointer placement
+// ----------------------------
+.bi.bi-floater.float-top-center .bi.bi-tooltip {
+  @include make-arrow-pointer('top-center', theme("colors.black"), theme("colors.black"));
+}
+
+.bi.bi-floater.float-top-left .bi.bi-tooltip {
+  @include make-arrow-pointer('top-left', theme("colors.black"), theme("colors.black"));
+}
+
+.bi.bi-floater.float-top-right .bi.bi-tooltip {
+  @include make-arrow-pointer('top-right', theme("colors.black"), theme("colors.black"));
+}
+
+.bi.bi-floater.float-bottom-center .bi.bi-tooltip {
+  @include make-arrow-pointer('bottom-center', v);
+}
+
+.bi.bi-floater.float-bottom-left .bi.bi-tooltip {
+  @include make-arrow-pointer('bottom-left', theme("colors.black"), theme("colors.black"));
+}
+
+.bi.bi-floater.float-bottom-right .bi.bi-tooltip {
+  @include make-arrow-pointer('bottom-right', theme("colors.black"), theme("colors.black"));
+}
+
+.bi.bi-floater.float-left-center .bi.bi-tooltip {
+  @include make-arrow-pointer('left-center', theme("colors.black"), theme("colors.black"));
+}
+
+.bi.bi-floater.float-right-center .bi.bi-tooltip {
+  @include make-arrow-pointer('right-center', theme("colors.black"), theme("colors.black"));
+}

@@ -1,0 +1,152 @@
+@import "../../../theme/utils/animations.scss";
+@import "../../../theme/utils/mixins";
+
+.bi.bi-select {
+  @apply box-border inline-flex relative align-top flex-col font-normal font-sans text-base tracking-normal text-default-darker;
+
+  // ----------------------------
+  // SELECT ELEMENT
+  // ----------------------------
+  .bi-select-element {
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-align: start;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    transition: box-shadow ease-in-out 0.25s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 9.625rem;
+    max-width: 100%;
+
+    @apply appearance-none bg-white border border-default-light border-solid py-2 pl-3 pr-8 m-0 rounded leading-tight;
+    @apply relative overflow-hidden cursor-pointer select-none;
+
+    &.select-multi {
+      @apply w-auto;
+    }
+
+    &:hover {
+      @apply border-default-light;
+    }
+
+    // focus
+    &:focus {
+      @apply outline-none;
+      box-shadow: 0 0 0 0.2rem theme("colors.primary-lightest");
+    }
+
+    .bi-select-placeholder {
+      @apply select-none opacity-50;
+    }
+
+    .bi.bi-caret {
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+
+  // ----------------------------
+  // OPEN
+  // ----------------------------
+  &.open .bi-select-element .bi.bi-caret {
+    transform: rotate(180deg);
+  }
+
+  // ----------------------------
+  // FLUID
+  // ----------------------------
+  &.fluid {
+    width: 100%;
+
+    .bi-select-element {
+      width: auto;
+    }
+  }
+
+  // ----------------------------
+  // CLEARABLE
+  // ----------------------------
+  &.clearable .bi-select-element {
+    @apply pr-16;
+
+    .sel-clear-x {
+      right: 2rem;
+
+      @apply flex inset-y-0 items-center absolute z-50 cursor-pointer px-2 border-0 border-r border-solid border-default-light;
+
+      > .bi.bi-close-icon {
+        width: 0.55rem;
+        height: 0.55rem;
+
+        @include fadeIn(0.25s);
+      }
+    }
+  }
+}
+
+// ----------------------------
+// SELECT DROPDOWN
+// ----------------------------
+.bi-select-options-dropdown {
+  max-height: 14rem;
+
+  @apply bg-white border border-default-light border-solid py-2 leading-tight rounded shadow-lg overflow-scroll;
+  @apply font-normal font-sans text-base;
+
+  @include slideTopIn(0.35s);
+  @include handle-scrolling-bar();
+
+  .bi-select-opt {
+    @apply py-2 px-3 font-normal font-sans text-base tracking-normal text-default-darker leading-tight cursor-pointer;
+    @apply border-r-0 border-l-0 border-t border-b border-white border-solid;
+
+    &:hover {
+      @apply bg-primary-lightest;
+    }
+
+    &.selected {
+      @apply bg-primary text-white;
+    }
+
+    &.disabled {
+      @apply opacity-50 cursor-not-allowed pointer-events-none;
+    }
+  }
+
+  // ----------------------------
+  // FILTRABLE
+  // ----------------------------
+  &.grouped-opts {
+    @apply pt-0;
+
+    .select-group {
+      @apply relative;
+
+      .group-title {
+        @apply font-normal py-1 px-3 font-sans text-base tracking-normal text-default-darker leading-tight bg-default-lighter;
+      }
+    }
+  }
+
+  // ----------------------------
+  // FILTRABLE
+  // ----------------------------
+  &.filtrable {
+    @apply pt-0;
+
+    .bi.bi-input {
+      @apply w-full;
+
+      input {
+        min-width: unset;
+
+        @apply rounded-none shadow-none border-t-0 border-r-0 border-l-0 font-normal font-sans text-base tracking-normal text-default-darker;
+      }
+    }
+
+    .no-results {
+      @apply px-2 font-normal font-sans text-base tracking-normal text-default-darker;
+    }
+  }
+}

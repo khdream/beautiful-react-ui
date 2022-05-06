@@ -1,0 +1,198 @@
+@import "../../../theme/utils/mixins";
+@import "styles/button-with-color";
+@import "styles/button-outline";
+@import "styles/button-hover-effect";
+
+.bi.bi-btn {
+  transition: background-color 0.25s ease-out, color 0.3s ease-out, box-shadow ease-in 0.18s;
+  box-shadow: 0 0.25rem 0.68rem 0 rgba(37, 44, 97, 0.15), 0 0.125rem 0.1875rem 0 rgba(93, 100, 148, 0.2);
+
+  @include shadow-gradient();
+
+  @apply inline-flex align-middle items-center justify-center box-border;
+  @apply cursor-pointer antialiased text-default-darker leading-tight font-normal font-sans text-base;
+  @apply bg-default-lighter outline-none select-none py-2 px-4 border-0 rounded;
+
+  + .bi.bi-btn {
+    @apply ml-2;
+  }
+
+  + .bi.bi-input {
+    @apply ml-2;
+  }
+
+  // ----------------------------
+  // SIZES
+  // ----------------------------
+  &.btn-sm {
+    @apply py-1 px-2 text-xs leading-normal;
+  }
+
+  &.btn-lg {
+    @apply px-4 py-2 leading-normal text-xl;
+  }
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include button-default-color();
+  @include button-transparent-color();
+  @include button-with-color("primary");
+  @include button-with-color("secondary");
+  @include button-with-color("info");
+  @include button-with-color("success");
+  @include button-with-color("warning");
+  @include button-with-color("danger");
+
+  // ----------------------------
+  // OUTLINES
+  // ----------------------------
+  @include button-outline-default();
+  @include button-outline-with-color("primary");
+  @include button-outline-with-color("secondary");
+  @include button-outline-with-color("info");
+  @include button-outline-with-color("success");
+  @include button-outline-with-color("warning");
+  @include button-outline-with-color("danger");
+
+  // ----------------------------
+  // BLOCK
+  // ----------------------------
+  &.btn-fluid {
+    @apply w-full my-2;
+
+    + .btn-fluid {
+      @apply mx-0;
+    }
+  }
+
+  // ----------------------------
+  // ROUNDED
+  // ----------------------------
+  &.btn-rounded {
+    @apply rounded-full;
+  }
+
+  // ----------------------------
+  // HOVER EFFECTS
+  // ----------------------------
+  @include button-hover-zoom(1.05);
+  @include button-hover-shrink(0.95);
+  @include button-hover-float(-0.2rem);
+  @include button-hover-reflection();
+  @include button-hover-round();
+
+  // ----------------------------
+  // DISABLED
+  // ----------------------------
+  &[disabled] {
+    @apply opacity-50;
+
+    box-shadow: unset;
+
+    &:hover {
+      box-shadow: unset !important; // please don't use !important
+      cursor: not-allowed;
+    }
+  }
+
+  // ----------------------------
+  // RIPPLE EFFECTS
+  // ----------------------------
+  @include ripple();
+
+  // fix the opacity of the riffle in the default and transparent buttons:
+  &.btn-default,
+  &.btn-transparent {
+    &:active::after {
+      opacity: 0.1;
+    }
+  }
+
+  // ----------------------------
+  // ICON
+  // ----------------------------
+  // @todo: the following sizes should derive from some tailwind instruction
+  &.btn-icon-only {
+    @apply px-0;
+
+    height: 2.25rem;
+    min-width: 2.25rem;
+
+    &.btn-sm {
+      width: 1.625rem;
+      height: 1.625rem;
+    }
+
+    &.btn-lg {
+      width: 2.875rem;
+      height: 2.875rem;
+    }
+
+    > .bi.bi-icon {
+      margin: 0;
+    }
+
+    .bi.bi-pill {
+      @apply mr-2;
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  > .bi.bi-icon {
+    @apply mr-2;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &.btn-lci > .bi.bi-icon {
+    @apply mr-0 ml-2;
+  }
+
+  // ----------------------------
+  // SPINNER
+  // ----------------------------
+  .bi.bi-spinner {
+    @apply w-3 h-3 mr-2;
+  }
+
+  // small spinner
+  &.btn-sm .bi.bi-spinner {
+    @apply w-2 h-2;
+  }
+
+  // large spinner
+  &.btn-lg .bi.bi-spinner {
+    @apply w-4 h-4;
+  }
+
+  &.btn-lci .bi.bi-spinner {
+    @apply mr-0 ml-2;
+  }
+
+  // ----------------------------
+  // PILL
+  // ----------------------------
+  /* stylelint-disable-next-line no-descending-specificity */
+  .bi.bi-pill {
+    @apply ml-2;
+  }
+
+  // apply a shadow to the pill if it is the same color of the button
+  &.btn-default .pill-default,
+  &.btn-primary .pill-primary,
+  &.btn-secondary .pill-secondary,
+  &.btn-info .pill-info,
+  &.btn-success .pill-success,
+  &.btn-warning .pill-warning,
+  &.btn-danger .pill-danger {
+    @apply shadow;
+  }
+
+  // if the pill is the first item in the button then change the style of the margins
+  &.btn-fcp .bi.bi-pill {
+    @apply ml-0 mr-2;
+  }
+}

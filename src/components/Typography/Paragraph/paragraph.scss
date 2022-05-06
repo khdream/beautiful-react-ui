@@ -1,0 +1,101 @@
+@import "../../../theme/utils/mixins";
+
+
+// -------------------------------
+// color mixin
+// -------------------------------
+@mixin make-paragraph-color($colorName: 'default') {
+  @if ($colorName != "default") {
+    &.bi-p-#{$colorName} {
+      @apply text-#{$colorName};
+
+      &.bi-p-light {
+        @apply text-#{$colorName}-light;
+      }
+    }
+  }
+}
+
+.bi.bi-p {
+  @include default-paragraph-style(false);
+  @apply mt-0 mb-2;
+
+
+  // ----------------------------
+  // Font family
+  // ----------------------------
+  &.bi-ff-sans {
+    @apply font-sans;
+  }
+
+  &.bi-ff-serif {
+    @apply font-serif;
+  }
+
+  &.bi-ff-mono {
+    @apply font-mono;
+  }
+
+
+  // ----------------------------
+  // Text align
+  // ----------------------------
+  &.bi-p-center {
+    @apply text-center;
+  }
+
+  &.bi-p-left {
+    @apply text-left;
+  }
+
+  &.bi-p-right {
+    @apply text-right;
+  }
+
+  &.bi-p-justify {
+    @apply text-justify;
+  }
+
+  // ----------------------------
+  // Word break
+  // ----------------------------
+  &.bi-p-break-normal {
+    @apply break-normal;
+  }
+
+  &.bi-p-break-words {
+    @apply break-words;
+  }
+
+  &.bi-p-break-all {
+    @apply break-all;
+  }
+
+  &.bi-p-break-truncate {
+    @apply truncate;
+  }
+
+  // ----------------------------
+  // Tiny
+  // ----------------------------
+  &.bi-p-tiny {
+    @apply text-sm mb-1;
+  }
+
+  // ----------------------------
+  // Light
+  // ----------------------------
+  &.bi-p-light {
+    @apply text-default;
+  }
+
+  // ----------------------------
+  // Colors
+  // ----------------------------
+  @include make-paragraph-color("primary");
+  @include make-paragraph-color("secondary");
+  @include make-paragraph-color("info");
+  @include make-paragraph-color("warning");
+  @include make-paragraph-color("danger");
+  @include make-paragraph-color("success");
+}

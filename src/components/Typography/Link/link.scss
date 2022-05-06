@@ -1,0 +1,26 @@
+@import "../../../theme/utils/mixins";
+
+// -------------------------------
+// color mixin
+// -------------------------------
+@mixin make-link-color($colorName: 'default') {
+  @if ($colorName != "default") {
+    &.bi-link-#{$colorName} {
+      @apply text-#{$colorName};
+    }
+  }
+}
+
+.bi.bi-link {
+  @include default-paragraph-style();
+
+  // ----------------------------
+  // Colors
+  // ----------------------------
+  @include make-link-color("primary");
+  @include make-link-color("secondary");
+  @include make-link-color("info");
+  @include make-link-color("warning");
+  @include make-link-color("danger");
+  @include make-link-color("success");
+}

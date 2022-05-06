@@ -1,0 +1,58 @@
+@import 'styles/create-spinner-color';
+
+.bi.bi-spinner {
+  @apply w-8 h-8 relative inline-block;
+
+  border-radius: 100%;
+
+  + .bi.bi-spinner {
+    @apply ml-2;
+  }
+
+  &.spinner-circle {
+    border: 0.1875rem solid rgba(0, 0, 0, 0.15);
+    border-top-color: theme("colors.white");
+    animation: bi-spinner-circle-animation 0.6s linear infinite;
+  }
+
+  &.spinner-pulse {
+    transform: scale(0);
+    background: theme("colors.default");
+    opacity: 1;
+    animation: bi-spinner-pulse-animation 0.8s linear infinite;
+  }
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include create-spinner-color('primary');
+  @include create-spinner-color('secondary');
+  @include create-spinner-color('info');
+  @include create-spinner-color('success');
+  @include create-spinner-color('warning');
+  @include create-spinner-color('danger');
+
+  // ----------------------------
+  // SIZES
+  // ----------------------------
+  &.spin-sm {
+    @apply w-5 h-5;
+  }
+
+  &.spin-lg {
+    @apply w-10 h-10;
+  }
+}
+
+@keyframes bi-spinner-circle-animation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bi-spinner-pulse-animation {
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}

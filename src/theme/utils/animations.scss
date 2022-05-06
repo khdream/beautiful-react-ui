@@ -1,0 +1,248 @@
+// ---------------------
+// FADEIN ANIMATION
+// ---------------------
+@mixin fadeIn($duration: 0.5s) {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1vh;
+  animation-name: AnimationFadeIn;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes AnimationFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.bi.bi-anim-fade-in {
+  @include fadeIn();
+}
+
+// ---------------------
+// SCALE ANIMATION
+// ---------------------
+@mixin zoomIn($duration: 0.5s) {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1vh;
+  animation-name: AnimationZoomIn;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes AnimationZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.975);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bi.bi-anim-zoom-in {
+  @include zoomIn();
+}
+
+// ---------------------
+// SLIDE TOP ANIMATION
+// ---------------------
+//noinspection ALL
+@mixin slideTopIn($duration: 0.5s, $full: false) {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1vh;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+
+  /* stylelint-disable */
+  @if $full {
+    animation-name: AnimationSlideTopFull;
+  } @else {
+    animation-name: AnimationSlideTop;
+  }
+  /* stylelint-enable */
+}
+
+@keyframes AnimationSlideTop {
+  from {
+    opacity: 0;
+    transform: translateY(-2.5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes AnimationSlideTopFull {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.bi.bi-anim-slide-top {
+  @include slideTopIn();
+}
+
+// ---------------------
+// SLIDE BOTTOM ANIMATION
+// ---------------------
+//noinspection ALL
+@mixin slideBottomIn($duration: 0.5s, $full: false) {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1vh;
+  animation-name: AnimationSlideBottom;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+
+  /* stylelint-disable */
+  @if $full {
+    animation-name: AnimationSlideBottomFull;
+  } @else {
+    animation-name: AnimationSlideBottom;
+  }
+  /* stylelint-enable */
+}
+
+@keyframes AnimationSlideBottom {
+  from {
+    opacity: 0;
+    transform: translateY(2.5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes AnimationSlideBottomFull {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.bi.bi-anim-slide-bottom {
+  @include slideBottomIn();
+}
+
+// ---------------------
+// SLIDE RIGHT ANIMATION
+// ---------------------
+//noinspection ALL
+@mixin slideRightIn($duration: 0.5s, $full: false) {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1vh;
+  animation-duration: $duration;
+  animation-timing-function: ease-in-out;
+
+  /* stylelint-disable*/
+  @if $full {
+    animation-name: AnimationSlideRightInFull;
+  } @else {
+    animation-name: AnimationSlideRigh;
+  }
+  /* stylelint-enable*/
+}
+
+
+@keyframes AnimationSlideRightIn {
+  from {
+    opacity: 0;
+    transform: translateX(2.5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes AnimationSlideRightInFull {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.bi.bi-anim-slide-right {
+  @include slideRightIn();
+}
+
+// ---------------------
+// SLIDE LEFT ANIMATION
+// ---------------------
+//noinspection ALL
+@mixin slideLeftIn($duration: 0.5s, $full: false) {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1vh;
+  animation-duration: $duration;
+  animation-timing-function: linear;
+
+  /* stylelint-disable */
+  @if $full {
+    animation-name: AnimationSlideLeftFull;
+  } @else {
+    animation-name: AnimationSlideLeft;
+  }
+  /* stylelint-enable*/
+}
+
+@keyframes AnimationSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-2.5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes AnimationSlideLeftFull {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bi.bi-anim-slide-left {
+  @include slideLeftIn();
+}

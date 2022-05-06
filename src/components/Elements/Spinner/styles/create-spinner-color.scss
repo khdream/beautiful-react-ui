@@ -1,0 +1,9 @@
+@mixin create-spinner-color($colorName: 'default', $colorValue: $colorName) {
+  &.spinner-circle.spinner-#{$colorName} {
+    border-top-color: theme("colors.#{$colorValue}");
+  }
+
+  &.spinner-pulse.spinner-#{$colorName} {
+    background-color: theme("colors.#{$colorValue}");
+  }
+}

@@ -1,0 +1,127 @@
+/* Number of max columns per row  */
+$cols: 12;
+
+/* Column classes prefix */
+$col-prefix: "bi-col";
+
+/* Offset classes prefix */
+$offset-prefix: "bi-offset";
+
+/* Size classes prefix */
+$size-prefix: "col-size";
+
+/* Grid system class names */
+$col-sm-class: #{$col-prefix}-sm !default;
+$col-md-class: #{$col-prefix}-md !default;
+$col-lg-class: #{$col-prefix}-lg !default;
+$col-xl-class: #{$col-prefix}-xl !default;
+$offset-sm-class: #{$offset-prefix}-sm !default;
+$offset-md-class: #{$offset-prefix}-md !default;
+$offset-lg-class: #{$offset-prefix}-lg !default;
+$offset-xl-class: #{$offset-prefix}-xl !default;
+
+/**
+ * Creates from 1 to $cols number of columns classes
+ */
+@mixin create-columns($className) {
+  @for $i from 1 through $cols {
+    &.#{$className}-#{$i} {
+      flex: none;
+      width: (($i)/ 12) * 100%;
+    }
+  }
+}
+
+/**
+ * Creates from 1 to $cols number of offsets classes
+ */
+@mixin create-offset($offsetName) {
+  @for $i from 1 through $cols {
+    &.#{$offsetName}-#{$i} {
+      margin-left: (($i)/ 12) * 100%;
+    }
+  }
+}
+
+.bi.bi-grid {
+  @apply flex flex-wrap flex-row;
+
+  &.reversed {
+    @apply flex-row-reverse;
+  }
+
+  &.items-start {
+    @apply items-start;
+  }
+
+  &.items-center {
+    @apply items-center;
+  }
+
+  &.items-end {
+    @apply items-end;
+  }
+
+  &.items-stretch {
+    @apply items-stretch;
+  }
+
+  &.items-baseline {
+    @apply items-baseline;
+  }
+
+  .bi.bi-grid-column {
+    flex-basis: 0;
+
+    @apply box-border w-full flex-grow flex-shrink p-1;
+
+    &.self-auto {
+      @apply self-auto;
+    }
+
+    &.self-start {
+      @apply self-start;
+    }
+
+    &.self-center {
+      @apply self-center;
+    }
+
+    &.self-end {
+      @apply self-end;
+    }
+
+    &.self-stretch {
+      @apply self-stretch;
+    }
+
+    // creates standard columns and offset classes
+    @include create-columns($col-prefix);
+    @include create-columns($size-prefix);
+    @include create-offset($offset-prefix);
+
+    // overrides previous classes with small-screen classes
+    @media screen and (max-width: theme("screens.sm")) {
+      @include create-columns($col-sm-class);
+      @include create-offset($offset-sm-class);
+    }
+
+    // overrides previous classes with medium-screen classes
+    @media screen and (min-width: theme("screens.sm")) and (max-width: theme("screens.md")) {
+      @include create-columns($col-md-class);
+      @include create-offset($offset-md-class);
+    }
+
+    // overrides previous classes with large-screen classes
+    @media screen and (min-width: theme("screens.md")) and (max-width: theme("screens.lg")) {
+      @include create-columns($col-lg-class);
+      @include create-offset($offset-lg-class);
+    }
+
+    // overrides previous classes with extra-large-screen classes
+    @media screen and (min-width: theme("screens.lg")) {
+      @include create-columns($col-xl-class);
+      @include create-offset($offset-xl-class);
+    }
+  }
+}

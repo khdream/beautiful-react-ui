@@ -1,0 +1,122 @@
+// ----------------------------
+// Makes the gradient background
+// ----------------------------
+@mixin makeGradient() {
+  background: theme('colors.default-light');
+  background: linear-gradient(63deg, theme('colors.default-light') 9%, theme('colors.default') 20%, theme('colors.default-light') 35%);
+}
+
+
+.bi.bi-placeholder {
+  @apply box-border;
+
+  // ----------------------------
+  // PARAGRAPHS
+  // ----------------------------
+  .bi-placeholder-paragraph,
+  .bi-placeholder-paragraph::after,
+  .bi-placeholder-paragraph::before {
+    @include makeGradient();
+
+    height: 0.5rem;
+    background-size: 50rem 10.625rem;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: BIAnimPlaceholder;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    will-change: background-position-x;
+  }
+
+  .bi-placeholder-paragraph {
+    @apply relative block;
+
+    width: 87%;
+    margin: 1.25rem 0;
+
+    + .bi-placeholder-paragraph {
+      margin-top: 3.25rem;
+      width: 93%;
+    }
+  }
+
+  .bi-placeholder-paragraph::after,
+  .bi-placeholder-paragraph::before {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .bi-placeholder-paragraph::after {
+    top: -1.25rem;
+    width: 80%;
+  }
+
+  .bi-placeholder-paragraph::before {
+    bottom: -1.25rem;
+    width: 65%;
+  }
+
+  // ----------------------------
+  // TITLE
+  // ----------------------------
+  .bi-placeholder-title {
+    @apply block mb-8;
+
+    @include makeGradient();
+
+    width: 45%;
+    height: 1rem;
+    background-size: 50rem 10.625rem;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: BIAnimPlaceholder;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    will-change: background-position-x;
+  }
+
+  // ----------------------------
+  // IMAGES
+  // ----------------------------
+  &.img-placeholder {
+    @apply flex content-between flex-wrap;
+
+    .bi-placeholder-img {
+      @apply block rounded mr-2 bg-white flex-initial overflow-hidden;
+
+      @include makeGradient();
+
+      height: 4rem;
+      width: 4rem;
+      background-size: 50rem 10.625rem;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: BIAnimPlaceholder;
+      animation-timing-function: linear;
+      animation-duration: 1s;
+      will-change: background-position-x;
+    }
+
+    .bi-placeholder-parag-wrapper {
+      @apply flex-initial flex-auto;
+    }
+
+    &.img-rounded .bi-placeholder-img {
+      @apply rounded-full;
+    }
+  }
+}
+
+// ----------------------------
+// Background moving animation
+// ----------------------------
+@keyframes BIAnimPlaceholder {
+  0% {
+    background-position-x: -25rem;
+  }
+
+  100% {
+    background-position-x: 25rem;
+  }
+}

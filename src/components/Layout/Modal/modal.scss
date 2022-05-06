@@ -1,0 +1,63 @@
+@import "../../../theme/utils/animations";
+
+.bi-modal-wrapper {
+  @apply inset-0 fixed overflow-hidden antialiased text-default-darker leading-tight font-normal font-sans text-base;
+  @apply flex flex-wrap items-start;
+
+  .bi-backdrop {
+    @apply inset-0 fixed p-6;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    @include fadeIn(0.15s);
+  }
+
+  .bi.bi-modal {
+    @apply mx-auto mt-8 bg-white rounded font-sans shadow-lg bg-white p-4;
+
+    z-index: 9999;
+    width: 31rem;
+    border-color: theme("colors.default");
+
+    .bi-modal-title {
+      @apply border-t-0 border-r-0 border-l-0 border-b border-solid pb-4 font-medium;
+
+      border-color: theme("colors.default");
+
+      .modal-title-content {
+        @apply flex-1 self-center pl-2;
+      }
+    }
+
+    .bi-modal-body {
+      @apply py-4;
+
+      // max-height: 10rem;
+    }
+
+    .bi-modal-footer {
+      @apply border-b-0 border-r-0 border-l-0 border-t border-solid pt-4 flex justify-end;
+
+      border-color: theme("colors.default");
+    }
+
+    // ----------------------------
+    // SIZES
+    // ----------------------------
+    &.bi-modal-sm {
+      width: 15rem;
+    }
+
+    &.bi-modal-lg {
+      width: 60rem;
+    }
+  }
+
+  &.center-modals {
+    @apply items-center;
+
+    .bi.bi-modal {
+      margin-top: 0;
+    }
+  }
+}

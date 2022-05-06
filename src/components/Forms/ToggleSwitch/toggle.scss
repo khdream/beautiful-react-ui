@@ -1,0 +1,87 @@
+$toggleSize: calc(theme('spacing.16') - theme('spacing.2'));
+$switchLeft: calc(100% - theme('spacing.8'));
+
+@mixin make-toggle-color($colorName: 'default', $colorValue: $colorName) {
+  &.bi-toggle-#{$colorName} {
+    > .bi-toggle-rail {
+      &:focus > .bi-toggle-switch,
+      &:hover > .bi-toggle-switch {
+        box-shadow: 0 0 0 0.25rem theme('colors.#{$colorValue}-lighter');
+      }
+    }
+
+    &.toggled .bi-toggle-rail {
+      @apply bg-#{$colorName} border-#{$colorName};
+    }
+  }
+}
+
+.bi.bi-toggle {
+  @apply inline-flex flex-col;
+
+  .bi-toggle-rail {
+    @apply box-border flex outline-none px-2 py-4 bg-default-light border-2 border-solid border-default-light;
+    @apply rounded-full relative cursor-pointer select-none;
+
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    width: $toggleSize;
+
+    // ----------------------------
+    // SWITCH
+    // ----------------------------
+    > .bi-toggle-switch {
+      @apply box-border absolute w-8 h-8 rounded-full bg-white inline-block self-center left-0 top-0;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+    }
+
+    // ----------------------------
+    // FOCUS & HOVER
+    // ----------------------------
+    &:focus > .bi-toggle-switch,
+    &:hover > .bi-toggle-switch {
+      box-shadow: 0 0 0 0.25rem theme('colors.primary-lighter');
+    }
+  }
+
+  + .bi.bi-toggle {
+    @apply ml-2;
+  }
+
+
+  // ----------------------------
+  // TOGGLED
+  // ----------------------------
+  &.toggled .bi-toggle-rail {
+    @apply bg-default;
+    border-color: theme('colors.default');
+
+    > .bi-toggle-switch {
+      left: $switchLeft;
+    }
+  }
+
+  // ----------------------------
+  // DISABLED
+  // ----------------------------
+  &.disabled {
+    @apply opacity-50;
+
+    .bi-toggle-rail {
+      @apply cursor-not-allowed;
+
+      &:hover > .bi-toggle-switch {
+        @apply shadow-none;
+      }
+    }
+  }
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include make-toggle-color('primary');
+  @include make-toggle-color('secondary');
+  @include make-toggle-color('info');
+  @include make-toggle-color('warning');
+  @include make-toggle-color('success');
+  @include make-toggle-color('danger');
+}

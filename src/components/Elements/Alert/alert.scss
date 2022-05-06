@@ -1,0 +1,55 @@
+@mixin create-alert-color($colorName) {
+  &.alert-#{$colorName} {
+    @apply bg-#{$colorName}-lighter text-#{$colorName}-darker;
+
+    border-color: theme("colors.#{$colorName}");
+
+    &.alert-solid {
+      @apply bg-#{$colorName} text-white;
+    }
+
+    &.alert-outline {
+      @apply text-#{$colorName} font-normal border-2 leading-tight;
+
+      background: transparent;
+      border-color: theme("colors.#{$colorName}");
+    }
+  }
+}
+
+.bi.bi-alert {
+  @apply max-w-full px-4 py-3 rounded mb-2 border border-solid font-sans box-border;
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include create-alert-color("default");
+  @include create-alert-color("primary");
+  @include create-alert-color("secondary");
+  @include create-alert-color("info");
+  @include create-alert-color("warning");
+  @include create-alert-color("danger");
+  @include create-alert-color("success");
+
+  // ---------------
+  // BUTTON
+  // ---------------
+  .alert-button {
+    @apply inline border-none p-0 m-0 float-right leading-tight;
+
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  // ---------------
+  // Icons or spinners within the Alert
+  // ---------------
+  .bi-icon,
+  .bi-button,
+  .bi-spinner {
+    @apply mr-2;
+  }
+}

@@ -1,0 +1,50 @@
+@mixin create-pill-color($colorName) {
+  &.pill-#{$colorName} {
+    @apply bg-#{$colorName} text-white;
+
+    &.linkable-pill:hover {
+      @apply bg-#{$colorName}-darker;
+    }
+  }
+}
+
+.bi.bi-pill {
+  @apply bg-default-lighter text-default-darker font-sans font-normal text-xs font-normal text-center px-2 py-1;
+  @apply leading-none antialiased uppercase box-border;
+
+  + .bi.bi-pill {
+    @apply ml-2;
+  }
+
+  // ----------------------------
+  // ROUNDED
+  // ----------------------------
+  &.pill-rounded {
+    @apply rounded-full inline-block;
+
+    min-width: 0.875rem;
+  }
+
+  // ----------------------------
+  // LINKABLE
+  // ----------------------------
+  &.linkable-pill {
+    transition: background-color 0.25s ease-out;
+
+    @apply no-underline;
+
+    &:hover {
+      @apply bg-default;
+    }
+  }
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include create-pill-color("primary");
+  @include create-pill-color("secondary");
+  @include create-pill-color("info");
+  @include create-pill-color("success");
+  @include create-pill-color("warning");
+  @include create-pill-color("danger");
+}

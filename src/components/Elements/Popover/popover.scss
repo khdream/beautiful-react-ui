@@ -1,0 +1,52 @@
+@import "../../../theme/utils/animations";
+@import "../../../theme/utils/mixins";
+
+.bi.bi-popover {
+  @apply border border-solid p-2 bg-white rounded antialiased text-default-darker leading-tight font-normal font-sans text-base;
+
+  border-color: theme("colors.default-light");
+
+  @include fadeIn(0.25s);
+
+  .bi-popover-title {
+    @apply mx-0 mt-0 mb-2 pb-2 font-medium text-base;
+
+    border-bottom: 0.065rem solid theme("colors.default-light");
+  }
+}
+
+
+// ----------------------------
+// Arrow pointer placement
+// ----------------------------
+.bi.bi-floater.float-top-center .bi.bi-popover {
+  @include make-arrow-pointer('top-center');
+}
+
+.bi.bi-floater.float-top-left .bi.bi-popover {
+  @include make-arrow-pointer('top-left');
+}
+
+.bi.bi-floater.float-top-right .bi.bi-popover {
+  @include make-arrow-pointer('top-right');
+}
+
+.bi.bi-floater.float-bottom-center .bi.bi-popover {
+  @include make-arrow-pointer('bottom-center');
+}
+
+.bi.bi-floater.float-bottom-left .bi.bi-popover {
+  @include make-arrow-pointer('bottom-left');
+}
+
+.bi.bi-floater.float-bottom-right .bi.bi-popover {
+  @include make-arrow-pointer('bottom-right');
+}
+
+.bi.bi-floater.float-left-center .bi.bi-popover {
+  @include make-arrow-pointer('left-center');
+}
+
+.bi.bi-floater.float-right-center .bi.bi-popover {
+  @include make-arrow-pointer('right-center');
+}

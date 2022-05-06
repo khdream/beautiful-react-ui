@@ -1,0 +1,25 @@
+@mixin progress-bar-color($colorName: "default", $colorValue: $colorName) {
+  &.bi-bar-#{$colorName} .bi-progress-bar-fill {
+    @apply bg-#{$colorValue};
+  }
+}
+
+.bi.bi-progress-bar {
+  @apply block box-content h-2 w-full bg-default-light relative rounded-full overflow-hidden;
+  @apply border-4 border-solid border-default-light;
+
+  + .bi.bi-progress-bar {
+    @apply mt-2;
+  }
+
+  .bi-progress-bar-fill {
+    @apply h-2 bg-default rounded-full;
+  }
+
+  @include progress-bar-color('primary');
+  @include progress-bar-color('secondary');
+  @include progress-bar-color('info');
+  @include progress-bar-color('warning');
+  @include progress-bar-color('success');
+  @include progress-bar-color('danger');
+}

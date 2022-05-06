@@ -1,0 +1,32 @@
+.bi.bi-fgroup {
+  @apply flex flex-wrap items-start;
+
+  + .bi.bi-fgroup {
+    @apply mt-4;
+  }
+
+  &.bi-vertical-fgroup {
+    @apply flex-col;
+
+    .bi.bi-label {
+      @apply mb-2;
+    }
+
+    .bi + .bi.bi-label {
+      @apply mt-2 mb-0;
+    }
+  }
+
+  &.bi-horizontal-fgroup {
+    @apply items-center;
+
+    // stylelint-disable-next-line
+    .bi.bi-label {
+      @apply mr-2;
+    }
+
+    .bi + .bi.bi-label {
+      @apply ml-2 mr-0;
+    }
+  }
+}

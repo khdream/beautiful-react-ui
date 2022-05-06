@@ -1,0 +1,110 @@
+$light-line-color: rgba(255, 255, 255, 0.4);
+
+.bi.bi-divider {
+  @apply border-0 border-t border-solid border-default-darker mt-4 mb-4;
+
+  // ----------------------------
+  // Nested text
+  // ----------------------------
+  &.bi-divider-text {
+    @apply border-0 overflow-hidden font-sans text-center leading-tight antialiased text-base font-medium;
+    @apply tracking-normal text-default-darker;
+
+    &::after,
+    &::before {
+      content: '';
+
+      @apply border-0 border-t border-solid border-default-darker inline-block relative align-middle w-1/2;
+    }
+
+    &::before {
+      margin-left: -50%;
+      right: 0.5em;
+    }
+
+    &::after {
+      left: 0.5em;
+      margin-right: -50%;
+    }
+
+    span {
+      @apply pl-2 pr-2;
+    }
+  }
+
+  // ----------------------------
+  // Light
+  // ----------------------------
+  &.bi-divider-light {
+    @apply border-default-lighter;
+
+    &.bi-divider-text {
+      &::after,
+      &::before {
+        @apply border-default-lighter;
+      }
+    }
+
+    &.bi-divider-fancy {
+      &::after,
+      &::before {
+        @apply border-default-darker;
+      }
+    }
+  }
+
+  // ----------------------------
+  // Fancy
+  // ----------------------------
+  &.bi-divider-fancy {
+    @apply relative border-b h-1;
+
+    &.bi-divider-text {
+      @apply border-0 h-auto;
+
+      &::after,
+      &::before {
+        @apply border-b h-1 border-t border-default-darker;
+      }
+    }
+
+    &.bi-divider-dashed {
+      @apply border-dashed;
+    }
+  }
+
+  // ----------------------------
+  // Dashed
+  // ----------------------------
+  &.bi-divider-dashed {
+    @apply border-dashed;
+
+    &.bi-divider-text {
+      &::after,
+      &::before {
+        @apply border-dashed;
+      }
+    }
+  }
+
+  // ----------------------------
+  // Dotted
+  // ----------------------------
+  &.bi-divider-dotted {
+    @apply border-dotted;
+
+    &.bi-divider-text {
+      &::after,
+      &::before {
+        @apply border-dotted;
+      }
+    }
+  }
+
+  // ----------------------------
+  // Clear fix
+  // ----------------------------
+  &.bi-divider-clearfix {
+    clear: both;
+  }
+}

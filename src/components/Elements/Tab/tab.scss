@@ -1,0 +1,155 @@
+@import "../../../theme/utils/animations";
+@import "../../../theme/utils/mixins";
+
+@mixin create-tab-color($colorName) {
+  &.tab-color-#{$colorName} {
+    .bi-tab-nav ul li.tab-btn-current a {
+      @apply text-#{$colorName}-dark;
+    }
+  }
+}
+
+.bi.bi-tab {
+  + .bi.bi-tab {
+    @apply mt-4;
+  }
+
+  // ----------------------------
+  // NAV BAR
+  // ----------------------------
+  .bi-tab-nav {
+    @apply border-t-0 border-r-0 border-l-0 border-b border-solid antialiased font-sans font-normal text-base;
+
+    border-color: theme("colors.default");
+
+    ul {
+      @apply flex flex-wrap m-0 p-0 list-none;
+
+      li {
+        @apply py-3 border-b-0 border-t border-r border-l border-solid rounded-t bg-default-light;
+
+        border-color: theme("colors.default");
+
+        + li {
+          @apply ml-2;
+        }
+
+        a {
+          @apply text-default-dark capitalize px-5 py-3 cursor-pointer;
+
+          .bi.bi-icon {
+            + .tab-title {
+              @apply ml-3;
+            }
+          }
+        }
+
+        a:focus {
+          @apply outline-none;
+        }
+
+        // ----------------------------
+        // DISABLED
+        // ----------------------------
+        &.tab-disabled {
+          @apply bg-white;
+
+          a {
+            @apply text-default-light cursor-not-allowed;
+          }
+        }
+
+        // ----------------------------
+        // CURRENT TAB
+        // ----------------------------
+        &.tab-btn-current {
+          @apply bg-white -mb-px;
+
+          a {
+            @apply capitalize;
+
+            color: theme("colors.primary");
+
+            .bi.bi-icon {
+              + .tab-title {
+                @apply ml-3;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ----------------------------
+  // CONTENT
+  // ----------------------------
+  .bi-tab-contents {
+    .tab-content {
+      @apply hidden rounded-r;
+      @include default-paragraph-style();
+
+      min-height: 9rem;
+
+      &.tab-content-show {
+        @apply block border-r border-l border-t-0 border-b border-solid px-5 py-3;
+
+        // ----------------------------
+        // ANIMATION
+        // ----------------------------
+        @include fadeIn();
+
+        border-color: theme("colors.default");
+      }
+
+      h3 {
+        @apply capitalize;
+      }
+    }
+  }
+
+  // ----------------------------
+  // ORIENTATION
+  // ----------------------------
+  &.tab-orientation {
+    @apply flex;
+
+    .bi-tab-nav {
+      @apply border-b-0 border-r;
+
+      ul {
+        @apply justify-start flex-col;
+
+        li {
+          @apply py-3 border-b border-r-0 rounded-l rounded-r-none border-solid;
+
+          &.tab-btn-current {
+            @apply mb-0 -mr-px;
+          }
+
+          + li {
+            @apply ml-0 mr-0 mb-0 mt-2;
+          }
+        }
+      }
+    }
+
+    .tab-content.tab-content-show {
+      @apply border-t border-l-0;
+
+      h3 {
+        @apply m-0;
+      }
+    }
+  }
+
+  // ----------------------------
+  // COLORS
+  // ----------------------------
+  @include create-tab-color("primary");
+  @include create-tab-color("secondary");
+  @include create-tab-color("success");
+  @include create-tab-color("danger");
+  @include create-tab-color("warning");
+  @include create-tab-color("info");
+}

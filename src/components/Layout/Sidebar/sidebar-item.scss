@@ -1,0 +1,168 @@
+@import "../../../theme/utils/animations";
+@import "../../../theme/utils/mixins";
+
+@mixin make-sidebar-item-accent($color) {
+  .bi.bi-sidebar.sidebar-#{$color} .bi-sidebar-nav-item {
+    &.selected-sidebar-item a {
+      color: theme('colors.#{$color}');
+    }
+
+    a .bi-sidebar-icon,
+    span .bi-sidebar-icon {
+      color: theme('colors.#{$color}');
+    }
+
+    &.selected-sidebar-item,
+    &:hover {
+      border-color: theme('colors.#{$color}');
+    }
+  }
+}
+
+.bi.bi-sidebar .bi-sidebar-nav-item {
+  color: theme('colors.default-darker');
+  transition: border-right 0.3s ease-out, border-left 0.3s ease-out;
+  @apply box-border leading-tight font-normal block relative;
+
+  // ----------------------------
+  // LINK
+  // ----------------------------
+  > a,
+  > span {
+    transition: color 0.3s ease-in-out, margin 0.3s ease-in-out;
+    @apply box-border w-full py-2 pl-4 no-underline text-default-darker inline-block align-middle;
+    @apply font-sans font-normal truncate leading-tight antialiased text-base font-normal tracking-normal;
+    @include ripple();
+
+    // ----------------------------
+    // LINK's content (text)
+    // ----------------------------
+    .bi-sidebar-item-content {
+      @apply inline-block;
+      transition: opacity 0.5s ease-in-out, transform 0.4s ease-in-out;
+      transform: translateX(-1rem);
+      opacity: 0;
+    }
+
+    // ----------------------------
+    // LINK's icon
+    // ----------------------------
+    .bi-sidebar-icon {
+      @apply inline-block text-xl;
+      transition: opacity 0.5s ease-in-out, transform 0.4s ease-in-out;
+      transform: translateX(-0.5rem);
+      opacity: 0;
+
+      + .bi-sidebar-item-content {
+        @apply ml-4;
+      }
+    }
+
+    // ----------------------------
+    // LINK's shrunk content
+    // ----------------------------
+    .bi-sidebar-item-shrunk {
+      @apply w-20 text-center inline-block text-base absolute right-0 top-0 bottom-0 inline-flex items-center justify-center;
+      @include fadeIn();
+    }
+  }
+
+  // ----------------------------
+  // LAST ITEM
+  // ----------------------------
+  &:last-child a,
+  &:last-child span {
+    border-bottom: 0;
+  }
+
+  // ----------------------------
+  // CURRENT ITEM
+  // ----------------------------
+  &.selected-sidebar-item {
+    border-color: theme('colors.primary');
+    border-style: solid;
+    border-width: 0;
+    border-right-width: 0.2rem;
+    background-color: rgba(20, 20, 20, 0.04);
+
+    a,
+    span {
+      color: theme('colors.primary');
+    }
+
+
+    a,
+    span .bi-sidebar-icon {
+      color: theme('colors.primary');
+    }
+
+    .bi-sidebar-item-shrunk {
+      transform: translateX(0.2rem);
+    }
+  }
+
+  // ----------------------------
+  // HOVER
+  // ----------------------------
+  &:hover {
+    border-color: theme('colors.primary');
+    border-style: solid;
+    border-width: 0;
+    border-right-width: 0.2rem;
+  }
+}
+
+// ----------------------------
+// SIDEBAR OPEN
+// ----------------------------
+.bi.bi-sidebar.sidebar-open .bi-sidebar-nav-item a,
+.bi.bi-sidebar.sidebar-open .bi-sidebar-nav-item span {
+  .bi-sidebar-icon {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .bi-sidebar-item-content {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .bi-sidebar-item-shrunk {
+    @apply hidden;
+  }
+}
+
+// ----------------------------
+// ORIENTATION RIGHT
+// ----------------------------
+.bi.bi-sidebar.sidebar-right .bi-sidebar-nav-item {
+  // ----------------------------
+  // CURRENT ITEM
+  // ----------------------------
+  &:hover,
+  &.selected-sidebar-item {
+    border-left-width: 0.2rem;
+    border-right-width: 0;
+  }
+
+  a .bi-sidebar-item-shrunk,
+  span .bi-sidebar-item-shrunk {
+    right: unset;
+    left: 0;
+  }
+
+  &.selected-sidebar-item a .bi-sidebar-item-shrunk,
+  &.selected-sidebar-item span .bi-sidebar-item-shrunk {
+    transform: translateX(-0.2rem);
+  }
+}
+
+// ----------------------------
+// ACCENT
+// ----------------------------
+@include make-sidebar-item-accent('primary');
+@include make-sidebar-item-accent('secondary');
+@include make-sidebar-item-accent('info');
+@include make-sidebar-item-accent('success');
+@include make-sidebar-item-accent('warning');
+@include make-sidebar-item-accent('danger');

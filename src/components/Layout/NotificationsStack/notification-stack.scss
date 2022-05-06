@@ -1,0 +1,194 @@
+@import "../../../theme/utils/animations";
+@import "../../../theme/utils/mixins";
+
+.bi-notifications-wrapper {
+  @apply fixed;
+
+  z-index: 9999;
+
+  // ----------------------------
+  // Single notification
+  // ----------------------------
+  .bi.bi-notification {
+    @apply bg-white rounded-lg shadow-lg p-4 relative border border-solid rounded flex items-center;
+
+    @include ripple(0.1);
+    @include default-paragraph-style();
+    min-width: 10rem;
+    max-width: 24rem;
+    min-height: 2.5rem;
+
+    + .bi.bi-notification {
+      @apply mt-2;
+    }
+  }
+
+  // ----------------------------
+  // POSITION
+  // ----------------------------
+  &.bi-ns-top-left {
+    @apply top-0 left-0 mt-2 ml-2;
+  }
+
+  &.bi-ns-top-center {
+    @apply top-0 mt-2;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.bi-ns-top-right {
+    @apply top-0 right-0 mt-2 mr-2;
+  }
+
+  &.bi-ns-bottom-left {
+    @apply bottom-0 left-0 mb-2 ml-2;
+  }
+
+  &.bi-ns-bottom-center {
+    @apply bottom-0 mb-2;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.bi-ns-bottom-right {
+    @apply bottom-0 right-0 mb-2 mr-2;
+  }
+
+
+  // ----------------------------
+  // ANIMATION
+  // ----------------------------
+  $animationDuration: 0.5s;
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-slide-left .bi.bi-notification {
+    @include slideLeftIn($animationDuration, true);
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-slide-top .bi.bi-notification {
+    @include slideTopIn($animationDuration, true);
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-slide-right .bi.bi-notification {
+    @include slideRightIn($animationDuration, true);
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-slide-bottom .bi.bi-notification {
+    @include slideBottomIn($animationDuration, true);
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-fade .bi.bi-notification {
+    @include fadeIn($animationDuration);
+  }
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-zoom .bi.bi-notification {
+    @include zoomIn($animationDuration);
+  }
+
+  // ----------------------------
+  // NOTIFICATION COLOR
+  // ----------------------------
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-default-color .bi.bi-notification {
+    border-color: theme("colors.default-light");
+
+    .bi.bi-btn {
+      color: theme("colors.default");
+    }
+
+    .notification-content {
+      .bi-title {
+        color: theme("colors.default");
+      }
+    }
+
+    .notification-left-side {
+      .bi.bi-icon {
+        color: theme("colors.default");
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-info-nope .bi.bi-notification {
+    border-color: theme("colors.info");
+
+    .bi.bi-btn {
+      color: theme("colors.info");
+    }
+
+    .notification-content {
+      .bi-title {
+        color: theme("colors.info");
+      }
+    }
+
+    .notification-left-side {
+      .bi.bi-icon {
+        color: theme("colors.info");
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-success-color .bi.bi-notification {
+    border-color: theme("colors.success");
+
+    .bi.bi-btn {
+      color: theme("colors.success");
+    }
+
+    .notification-content {
+      .bi-title {
+        color: theme("colors.success");
+      }
+    }
+
+    .notification-left-side {
+      .bi.bi-icon {
+        color: theme("colors.success");
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-warning-color .bi.bi-notification {
+    border-color: theme("colors.warning");
+
+    .bi.bi-btn {
+      color: theme("colors.warning");
+    }
+
+    .notification-content {
+      .bi-title {
+        color: theme("colors.warning");
+      }
+    }
+
+    .notification-left-side {
+      .bi.bi-icon {
+        color: theme("colors.warning");
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.bi-ns-danger-color .bi.bi-notification {
+    border-color: theme("colors.danger");
+
+    .bi.bi-btn {
+      color: theme("colors.danger");
+    }
+
+    .notification-content {
+      .bi-title {
+        color: theme("colors.danger");
+      }
+    }
+
+    .notification-left-side {
+      .bi.bi-icon {
+        color: theme("colors.danger");
+      }
+    }
+  }
+}

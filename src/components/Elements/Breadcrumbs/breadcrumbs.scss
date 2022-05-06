@@ -1,0 +1,61 @@
+.bi.bi-breadcrumbs {
+  @apply m-2 p-3 rounded bg-gray-200 box-border;
+
+  ol {
+    @apply list-none m-0 p-0 inline-flex w-full items-center;
+
+    .bi.breadcrumb-item {
+      @apply inline-flex items-center antialiased text-default font-sans font-normal text-base leading-tight;
+
+      &::after {
+        @apply mx-2;
+        content: "/";
+      }
+
+      &:last-child::after {
+        content: "";
+        @apply mr-0;
+      }
+
+      a {
+        @apply no-underline text-default font-sans font-normal text-base leading-tight;
+      }
+
+      .bi.bi-icon {
+        @apply mr-2;
+      }
+
+      .bi.bi-btn .bi.bi-icon {
+        @apply mr-0;
+      }
+    }
+  }
+
+  &.breadcrumbs-default ol .bi.breadcrumb-item a {
+    @apply text-default;
+  }
+
+  &.breadcrumbs-primary ol .bi.breadcrumb-item a {
+    @apply text-primary;
+  }
+
+  &.breadcrumbs-secondary ol .bi.breadcrumb-item a {
+    @apply text-secondary;
+  }
+
+  &.breadcrumbs-info ol .bi.breadcrumb-item a {
+    @apply text-info;
+  }
+
+  &.breadcrumbs-success ol .bi.breadcrumb-item a {
+    @apply text-success;
+  }
+
+  &.breadcrumbs-warning ol .bi.breadcrumb-item a {
+    @apply text-warning;
+  }
+
+  &.breadcrumbs-danger ol .bi.breadcrumb-item a {
+    @apply text-danger;
+  }
+}

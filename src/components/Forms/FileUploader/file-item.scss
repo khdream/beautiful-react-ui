@@ -1,0 +1,31 @@
+@import "../../../theme/utils/animations";
+
+.bi.bi-file-uploader .bi.bi-file-item {
+  @apply p-2;
+
+  .bi.bi-icon.bi-list-item-icon {
+    @apply text-2xl;
+  }
+
+  .bi-list-item-content {
+    @apply flex flex-wrap;
+
+    .bi.bi-avatar {
+      @apply mr-2 self-start;
+
+      @include fadeIn();
+    }
+
+    .bi-file-info {
+      @apply pr-4 flex-1;
+
+      .bi-file-size {
+        @apply text-default;
+      }
+    }
+
+    .bi.bi-file-cta {
+      @apply flex-auto;
+    }
+  }
+}

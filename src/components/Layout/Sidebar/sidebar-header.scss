@@ -1,0 +1,86 @@
+@mixin make-sidebar-header-color($color) {
+  &.sidebar-header-#{$color} .bi-sidbr-head-ctnt h1 {
+    color: theme('colors.#{$color}');
+  }
+}
+
+@mixin make-sidebar-header-accent($color) {
+  .bi.bi-sidebar.sidebar-#{$color} .bi-sidebar-header .bi-sidebar-toggle > button {
+    color: theme('colors.#{$color}');
+  }
+}
+
+.bi.bi-sidebar .bi-sidebar-header {
+  @apply py-4 mt-0 text-default-darker flex;
+
+  // ----------------------------
+  // TITLE and/or LOGO
+  // ----------------------------
+  .bi-sidbr-head-ctnt {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateX(-20%);
+    @apply opacity-0 flex flex-auto w-0 pl-4 pr-4 overflow-hidden self-center;
+
+    h1 {
+      @apply m-0 text-2xl text-left antialiased leading-tight font-sans font-medium text-default-darker truncate;
+    }
+
+    img {
+      @apply self-center;
+    }
+
+    img,
+    h1 {
+      max-width: 100%;
+    }
+  }
+
+  // ----------------------------
+  // TOGGLE
+  // ----------------------------
+  .bi-sidebar-toggle {
+    @apply w-20 text-center;
+  }
+
+
+  // ----------------------------
+  // TITLE COLOURS
+  // ----------------------------
+  @include make-sidebar-header-color('primary');
+  @include make-sidebar-header-color('secondary');
+  @include make-sidebar-header-color('info');
+  @include make-sidebar-header-color('success');
+  @include make-sidebar-header-color('warning');
+  @include make-sidebar-header-color('danger');
+}
+
+// ----------------------------
+// SIDEBAR OPEN
+// ----------------------------
+.bi.bi-sidebar.sidebar-open .bi-sidebar-header {
+  .bi-sidbr-head-ctnt {
+    transform: translateX(0);
+    @apply opacity-100;
+  }
+}
+
+// ----------------------------
+// ORIENTATION: RIGHT
+// ----------------------------
+.bi.bi-sidebar.sidebar-right .bi-sidebar-header {
+  @apply flex-row-reverse;
+
+  .bi-sidbr-head-ctnt {
+    @apply pr-0 pl-2;
+  }
+}
+
+// ----------------------------
+// COLOURS
+// ----------------------------
+@include make-sidebar-header-accent('primary');
+@include make-sidebar-header-accent('secondary');
+@include make-sidebar-header-accent('info');
+@include make-sidebar-header-accent('success');
+@include make-sidebar-header-accent('warning');
+@include make-sidebar-header-accent('danger');
